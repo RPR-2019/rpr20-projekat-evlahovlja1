@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 public class VMeet extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/splashScreen.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
         primaryStage.setTitle("VMeet");
         primaryStage.setScene(new Scene(root));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/ikona.jpg")));
