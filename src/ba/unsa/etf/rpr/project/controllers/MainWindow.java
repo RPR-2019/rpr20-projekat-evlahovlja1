@@ -49,7 +49,6 @@ public class MainWindow {
 
 
     public void initSearch(ActionEvent actionEvent) {
-        //fixme: boje ne valjaju!
         getAllUsersFromServer();
         hboxMainContent.getChildren().remove(btnInitSearch);
         ImageView x = new ImageView(new Image("/images/x.png"));
