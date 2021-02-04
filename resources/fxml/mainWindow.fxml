@@ -5,13 +5,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.project.controllers.MainWindow">
    <center>
-      <VBox prefWidth="400.0" BorderPane.alignment="CENTER">
+      <VBox prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" text="Započni upoznavanje" />
+                  <Button mnemonicParsing="false" text="Započni upoznavanje">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
@@ -25,7 +29,7 @@
          </children></HBox>
    </bottom>
    <left>
-      <TreeView BorderPane.alignment="CENTER" />
+      <TreeView prefWidth="150.0" BorderPane.alignment="CENTER" />
    </left>
    <opaqueInsets>
       <Insets />
