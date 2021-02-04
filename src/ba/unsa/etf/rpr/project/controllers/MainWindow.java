@@ -6,7 +6,11 @@ import com.google.gson.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,5 +51,16 @@ public class MainWindow {
     public void initSearch(ActionEvent actionEvent) {
         getAllUsersFromServer();
         hboxMainContent.getChildren().remove(btnInitSearch);
+        ImageView x = new ImageView(new Image("/images/x.jpg"));
+        x.setFitHeight(30);
+        x.setFitWidth(30);
+        StackPane usersDisplay = new StackPane();
+        usersDisplay.getChildren().add(new Label("Elvir"));
+        usersDisplay.getChildren().add(new Label("Sanelaaaaa"));
+        ImageView checkmark = new ImageView(new Image("/images/checkmark.png"));
+        checkmark.setFitHeight(30);
+        checkmark.setFitWidth(30);
+        hboxMainContent.getChildren().addAll(x, usersDisplay, checkmark);
+        checkmark.setOnMouseClicked(mouseEvent -> usersDisplay.getChildren().remove(usersDisplay.getChildren().size()-1));
     }
 }
