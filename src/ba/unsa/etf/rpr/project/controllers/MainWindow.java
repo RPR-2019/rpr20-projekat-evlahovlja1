@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,6 +16,7 @@ import java.net.URLConnection;
 public class MainWindow {
     private final String serverUrl = "http://localhost:8080";
     @FXML private Button btnInitSearch;
+    @FXML private HBox hboxMainContent;
 
     private void runOnAnotherThread(Runnable function){
         new Thread(function).start();
@@ -44,5 +46,6 @@ public class MainWindow {
 
     public void initSearch(ActionEvent actionEvent) {
         getAllUsersFromServer();
+        hboxMainContent.getChildren().remove(btnInitSearch);
     }
 }

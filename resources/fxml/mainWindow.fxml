@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.project.controllers.MainWindow">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.project.controllers.MainWindow">
    <center>
       <VBox prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+            <HBox fx:id="hboxMainContent" alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" text="Započni upoznavanje" fx:id="btnInitSearch" onAction="#initSearch">
+                  <Button fx:id="btnInitSearch" mnemonicParsing="false" onAction="#initSearch" text="Započni upoznavanje">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
