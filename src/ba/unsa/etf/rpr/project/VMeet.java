@@ -15,7 +15,7 @@ public class VMeet extends Application {
         primaryStage.setTitle("VMeet");
         primaryStage.setScene(new Scene(root));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/ikona.jpg")));
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
