@@ -49,17 +49,18 @@ public class MainWindow {
 
 
     public void initSearch(ActionEvent actionEvent) {
+        //fixme: boje ne valjaju!
         getAllUsersFromServer();
         hboxMainContent.getChildren().remove(btnInitSearch);
-        ImageView x = new ImageView(new Image("/images/x.jpg"));
-        x.setFitHeight(30);
-        x.setFitWidth(30);
+        ImageView x = new ImageView(new Image("/images/x.png"));
+        x.setFitHeight(50);
+        x.setFitWidth(50);
         StackPane usersDisplay = new StackPane();
         usersDisplay.getChildren().add(new Label("Elvir"));
         usersDisplay.getChildren().add(new Label("Sanelaaaaa"));
         ImageView checkmark = new ImageView(new Image("/images/checkmark.png"));
-        checkmark.setFitHeight(30);
-        checkmark.setFitWidth(30);
+        checkmark.setFitHeight(50);
+        checkmark.setFitWidth(50);
         hboxMainContent.getChildren().addAll(x, usersDisplay, checkmark);
         checkmark.setOnMouseClicked(mouseEvent -> usersDisplay.getChildren().remove(usersDisplay.getChildren().size()-1));
     }
