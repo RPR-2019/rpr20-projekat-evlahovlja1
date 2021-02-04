@@ -12,7 +12,7 @@
          <children>
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" text="Započni upoznavanje">
+                  <Button mnemonicParsing="false" text="Započni upoznavanje" fx:id="btnInitSearch" onAction="#initSearch">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
