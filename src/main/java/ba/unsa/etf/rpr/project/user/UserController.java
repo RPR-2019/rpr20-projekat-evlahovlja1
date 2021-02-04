@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/")
-public class BasicUserController {
+public class UserController {
     private final UserService userService;
 
     @Autowired
-    public BasicUserController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

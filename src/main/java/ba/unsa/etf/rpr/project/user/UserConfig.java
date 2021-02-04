@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Configuration
-public class BasicUserConfig {
+public class UserConfig {
     @Bean
     CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
