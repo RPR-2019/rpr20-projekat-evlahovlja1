@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -65,6 +66,6 @@ public class SplashScreen {
         post.setHeader("Accept", "text/plain");
         post.setHeader("Content-type", "application/json");
         HttpResponse response = httpClient.execute(post);
-        System.out.println(response.getStatusLine().toString());
+        System.out.println(EntityUtils.toString(response.getEntity(), "UTF-8"));
     }
 }
