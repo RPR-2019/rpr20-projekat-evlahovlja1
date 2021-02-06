@@ -7,14 +7,19 @@
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
+      <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
+      <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
     </CLASSES>
     <JAVADOC />
     <NATIVE>
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
+      <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
     </NATIVE>
     <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
+      <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
       <root url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" />
@@ -27,6 +32,10 @@
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" />
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" />
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" type="SOURCES" />
     <jarDirectory url="file://$USER_HOME$/Desktop/PROGRAMIRANJE/javafx-sdk-15/lib" recursive="false" type="SOURCES" />
