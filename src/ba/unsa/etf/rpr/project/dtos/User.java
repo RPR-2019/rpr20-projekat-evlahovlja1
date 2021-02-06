@@ -120,6 +120,22 @@ public class User {
         this.about = about;
     }
 
+    public String getJsonFormat() {
+        return String.format("{\"name\":\"%s\", \"lastname\":\"%s\", \"gender\":\"%s\", \"dateOfBirth\":\"%s\", " +
+                        "\"city\":\"%s\", \"student\":\"%s\", " +
+                        "\"institution\":\"%s\", \"favoriteLanguage\":\"%s\", \"about\":\"%s\"}",
+                name,
+                lastname,
+                gender,
+                dateOfBirth.toString(),
+                city,
+                student,
+                institution,
+                favoriteLanguage,
+                about
+        );
+    }
+
     @Override
     public String toString() {
         return "User{" +
