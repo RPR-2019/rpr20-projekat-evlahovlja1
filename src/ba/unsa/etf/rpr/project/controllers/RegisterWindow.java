@@ -12,6 +12,7 @@ public class RegisterWindow {
     private void addGenderRadioButtons() {
         final ToggleGroup genderRadioGroup = new ToggleGroup();
         RadioButton male = new RadioButton("M");
+        male.setSelected(true);
         male.setToggleGroup(genderRadioGroup);
         RadioButton female = new RadioButton("F");
         female.setToggleGroup(genderRadioGroup);
