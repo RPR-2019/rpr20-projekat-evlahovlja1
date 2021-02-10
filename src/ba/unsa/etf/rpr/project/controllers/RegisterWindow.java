@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.project.controllers;
 import ba.unsa.etf.rpr.project.dtos.User;
 import ba.unsa.etf.rpr.project.utilities.Json;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -123,7 +124,7 @@ public class RegisterWindow {
 
     }
 
-    public void okAction() throws Exception {
+    public void okAction(ActionEvent actionEvent) throws Exception {
         //uname and pass first
         HashMap<String, String> payload = new HashMap<>();
         payload.put("username", txtFldUsername.getText());
@@ -146,5 +147,9 @@ public class RegisterWindow {
         );
         ret = Json.sendPost("http://localhost:8080", user.getJsonFormat());
         System.out.println(ret);
+    }
+
+    public void cancelAction(ActionEvent actionEvent) {
+
     }
 }
