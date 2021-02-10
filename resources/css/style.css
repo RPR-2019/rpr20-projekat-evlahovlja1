@@ -1,0 +1,7 @@
+.invalid-field {
+    -fx-background-color: lightpink;
+}
+
+.valid-field {
+    -fx-background-color: lightgreen;
+}

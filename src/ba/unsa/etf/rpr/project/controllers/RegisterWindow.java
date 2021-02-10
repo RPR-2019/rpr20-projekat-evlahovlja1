@@ -114,11 +114,75 @@ public class RegisterWindow {
         choiceBoxFavoriteLang.getSelectionModel().select(0);
     }
 
+    private void validationStyle() {
+        txtFldUsername.getStyleClass().add("invalid-field");
+        txtFldUsername.textProperty().addListener((observableValue, o, n) -> {
+            if (n.isEmpty() || n.isBlank()) {
+                txtFldUsername.getStyleClass().remove("valid-field");
+                txtFldUsername.getStyleClass().add("invalid-field");
+            }
+            else if ((o.isEmpty() || o.isBlank()) && !n.equals(o)) {
+                txtFldUsername.getStyleClass().remove("invalid-field");
+                txtFldUsername.getStyleClass().add("valid-field");
+            }
+        });
+
+        pswdFldPassword.getStyleClass().add("invalid-field");
+        pswdFldPassword.textProperty().addListener((observableValue, o, n) -> {
+            if (n.isEmpty() || n.isBlank()) {
+                pswdFldPassword.getStyleClass().removeAll("valid-field");
+                pswdFldPassword.getStyleClass().add("invalid-field");
+            }
+            else if ((o.isEmpty() || o.isBlank()) && !n.equals(o)) {
+                pswdFldPassword.getStyleClass().removeAll("invalid-field");
+                pswdFldPassword.getStyleClass().add("valid-field");
+            }
+        });
+
+        txtFldName.getStyleClass().add("invalid-field");
+        txtFldName.textProperty().addListener((observableValue, o, n) -> {
+            System.out.println(n);
+            if (n.isEmpty() || n.isBlank()) {
+                txtFldName.getStyleClass().remove("valid-field");
+                txtFldName.getStyleClass().add("invalid-field");
+            }
+            else if ((o.isEmpty() || o.isBlank()) && !n.equals(o)) {
+                txtFldName.getStyleClass().remove("invalid-field");
+                txtFldName.getStyleClass().add("valid-field");
+            }
+        });
+
+        txtFldLastname.getStyleClass().add("invalid-field");
+        txtFldLastname.textProperty().addListener((observableValue, o, n) -> {
+            if (n.isEmpty() || n.isBlank()) {
+                txtFldLastname.getStyleClass().remove("valid-field");
+                txtFldLastname.getStyleClass().add("invalid-field");
+            }
+            else if ((o.isEmpty() || o.isBlank()) && !n.equals(o)) {
+                txtFldLastname.getStyleClass().remove("invalid-field");
+                txtFldLastname.getStyleClass().add("valid-field");
+            }
+        });
+
+        txtFldInstitution.getStyleClass().add("invalid-field");
+        txtFldInstitution.textProperty().addListener((observableValue, o, n) -> {
+            if (n.isEmpty() || n.isBlank()) {
+                txtFldInstitution.getStyleClass().remove("valid-field");
+                txtFldInstitution.getStyleClass().add("invalid-field");
+            }
+            else if ((o.isEmpty() || o.isBlank()) && !n.equals(o)) {
+                txtFldInstitution.getStyleClass().remove("invalid-field");
+                txtFldInstitution.getStyleClass().add("valid-field");
+            }
+        });
+    }
+
     private void finishGui() {
         addGenderRadioButtons();
         addCityOptions();
         addLanguageOptions();
         datePckrDateOfBirth.setValue(LocalDate.now());
+        validationStyle();
     }
 
 
