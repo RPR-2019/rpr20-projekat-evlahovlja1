@@ -4,6 +4,7 @@ import ba.unsa.etf.rpr.project.dtos.User;
 import ba.unsa.etf.rpr.project.utilities.Json;
 import ba.unsa.etf.rpr.project.utilities.Threading;
 import ba.unsa.etf.rpr.project.utilities.Window;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -187,26 +188,46 @@ public class RegisterWindow {
         validationStyle();
     }
 
+    private boolean anyFieldInvalid() {
+        return txtFldUsername.getStyleClass().contains("invalid-field") ||
+                pswdFldPassword.getStyleClass().contains("invalid-field") ||
+                txtFldName.getStyleClass().contains("invalid-field") ||
+                txtFldLastname.getStyleClass().contains("invalid-field") ||
+                txtFldInstitution.getStyleClass().contains("invalid-field");
+    }
+
+    private void createAlert(Alert.AlertType type, String title, String header, String text) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(text);
+        alert.showAndWait();
+    }
+
+    private User createUserFromFields() {
+        return new User(
+                txtFldName.getText().trim(),
+                txtFldLastname.getText().trim(),
+                gender,
+                datePckrDateOfBirth.getValue(),
+                Period.between(datePckrDateOfBirth.getValue(), LocalDate.now()).getYears(),
+                choiceBoxCity.getValue(),
+                checkBoxStudent.isSelected(),
+                txtFldInstitution.getText().trim(),
+                choiceBoxFavoriteLang.getValue(),
+                txtAreaAbout.getText().trim()
+        );
+    }
+
 
     @FXML public void initialize() {
         finishGui();
-
     }
 
     public void okAction(ActionEvent actionEvent) {
-        if (
-                txtFldUsername.getStyleClass().contains("invalid-field") ||
-                        pswdFldPassword.getStyleClass().contains("invalid-field") ||
-                        txtFldName.getStyleClass().contains("invalid-field") ||
-                        txtFldLastname.getStyleClass().contains("invalid-field") ||
-                        txtFldInstitution.getStyleClass().contains("invalid-field")
-        )
+        if (anyFieldInvalid())
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Prazno polje");
-            alert.setHeaderText("Nijedno polje ne smije biti prazno");
-            alert.setContentText("Molimo popunite sva polja");
-            alert.showAndWait();
+            createAlert(Alert.AlertType.ERROR, "Prazno polje", "Nijedno polje ne smije biti prazno", "Molimo popunite sva polja");
             return;
         }
         Threading.runOnAnotherThread(() -> {
@@ -216,22 +237,23 @@ public class RegisterWindow {
                 payload.put("password", pswdFldPassword.getText().trim());
                 String sendablePayload = Json.generatePayload(payload);
                 String ret = Json.sendPost("http://localhost:8080/cred", sendablePayload);
-                System.out.println(ret);
 
-                User user = new User(
-                        txtFldName.getText().trim(),
-                        txtFldLastname.getText().trim(),
-                        gender,
-                        datePckrDateOfBirth.getValue(),
-                        Period.between(datePckrDateOfBirth.getValue(), LocalDate.now()).getYears(),
-                        choiceBoxCity.getValue(),
-                        checkBoxStudent.isSelected(),
-                        txtFldInstitution.getText().trim(),
-                        choiceBoxFavoriteLang.getValue(),
-                        txtAreaAbout.getText().trim()
-                );
-                ret = Json.sendPost("http://localhost:8080", user.getJsonFormat());
-                System.out.println(ret);
+                if (!ret.equals("OK")) {
+                    String finalRet = ret;
+                    Platform.runLater(() -> {
+                        createAlert(Alert.AlertType.WARNING, "Greska na serveru", "Doslo je do greske na serveru", finalRet);
+                    });
+                    return;
+                }
+
+                ret = Json.sendPost("http://localhost:8080", createUserFromFields().getJsonFormat());
+                if (!ret.equals("OK")) {
+                    String finalRet = ret;
+                    Platform.runLater(() -> {
+                        createAlert(Alert.AlertType.WARNING, "Greska na serveru", "Doslo je do greske na serveru", finalRet);
+                    });
+                    return;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 System.exit(-20);
