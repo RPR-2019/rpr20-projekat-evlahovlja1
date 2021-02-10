@@ -134,7 +134,7 @@ public class User {
     }
 
     public String getJsonFormat() {
-        return String.format("{\"name\":\"%s\", \"lastname\":\"%s\", \"gender\":\"%s\", \"dateOfBirth\":\"%s\", " +
+        return String.format("{\"firstname\":\"%s\", \"lastname\":\"%s\", \"gender\":\"%s\", \"dateOfBirth\":\"%s\", " +
                         "\"city\":\"%s\", \"student\":\"%s\", " +
                         "\"institution\":\"%s\", \"favoriteLanguage\":\"%s\", \"about\":\"%s\"}",
                 name,
