@@ -212,23 +212,23 @@ public class RegisterWindow {
         Threading.runOnAnotherThread(() -> {
             try {
                 HashMap<String, String> payload = new HashMap<>();
-                payload.put("username", txtFldUsername.getText());
-                payload.put("password", pswdFldPassword.getText());
+                payload.put("username", txtFldUsername.getText().trim());
+                payload.put("password", pswdFldPassword.getText().trim());
                 String sendablePayload = Json.generatePayload(payload);
                 String ret = Json.sendPost("http://localhost:8080/cred", sendablePayload);
                 System.out.println(ret);
 
                 User user = new User(
-                        txtFldName.getText(),
-                        txtFldLastname.getText(),
+                        txtFldName.getText().trim(),
+                        txtFldLastname.getText().trim(),
                         gender,
                         datePckrDateOfBirth.getValue(),
                         Period.between(datePckrDateOfBirth.getValue(), LocalDate.now()).getYears(),
                         choiceBoxCity.getValue(),
                         checkBoxStudent.isSelected(),
-                        txtFldInstitution.getText(),
+                        txtFldInstitution.getText().trim(),
                         choiceBoxFavoriteLang.getValue(),
-                        txtAreaAbout.getText()
+                        txtAreaAbout.getText().trim()
                 );
                 ret = Json.sendPost("http://localhost:8080", user.getJsonFormat());
                 System.out.println(ret);
