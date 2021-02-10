@@ -25,7 +25,12 @@ public class UserController {
             produces = "text/plain"
     )
     public String registerUser(@RequestBody User user) {
-        this.userService.addNewUser(user);
-        return String.valueOf(user.getId());
+        try {
+            this.userService.addNewUser(user);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+//        return String.valueOf(user.getId());
+        return "OK";
     }
 }

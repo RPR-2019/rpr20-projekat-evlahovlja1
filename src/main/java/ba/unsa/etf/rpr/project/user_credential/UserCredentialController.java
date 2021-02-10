@@ -22,7 +22,11 @@ public class UserCredentialController {
             produces = "text/plain"
     )
     public String registerUserCredential(@RequestBody UserCredential userCredential) {
-        this.userCredentialService.addNewCredential(userCredential);
+        try {
+            this.userCredentialService.addNewCredential(userCredential);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
         return "OK";
     }
 }
