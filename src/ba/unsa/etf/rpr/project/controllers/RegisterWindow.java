@@ -32,12 +32,10 @@ public class RegisterWindow {
     private void addGenderRadioButtons() {
         final ToggleGroup genderRadioGroup = new ToggleGroup();
         RadioButton male = new RadioButton("M");
-        male.setSelected(true);
         male.setToggleGroup(genderRadioGroup);
         RadioButton female = new RadioButton("F");
         female.setToggleGroup(genderRadioGroup);
 
-        gender = 'M';
         genderRadioGroup.selectedToggleProperty().addListener((observableValue, oldVal, newVal) -> {
             if (newVal.equals(male)) {
                 gender = 'M';
@@ -46,6 +44,7 @@ public class RegisterWindow {
                 gender = 'F';
             }
         });
+        male.setSelected(true);
         gridPaneInfo.add(new HBox(15, male,female), 1, 1);
     }
 
@@ -89,6 +88,7 @@ public class RegisterWindow {
                 "Prozor",
                 "Novi Travnik"
         )).sorted());
+        choiceBoxCity.getSelectionModel().select(0);
     }
 
     private void addLanguageOptions() {
@@ -111,12 +111,14 @@ public class RegisterWindow {
                 "Objective C",
                 "Assembly"
         )).sorted());
+        choiceBoxFavoriteLang.getSelectionModel().select(0);
     }
 
     private void finishGui() {
         addGenderRadioButtons();
         addCityOptions();
         addLanguageOptions();
+        datePckrDateOfBirth.setValue(LocalDate.now());
     }
 
 
