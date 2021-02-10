@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.project.controllers;
 
 import ba.unsa.etf.rpr.project.dtos.User;
 import ba.unsa.etf.rpr.project.utilities.Json;
+import ba.unsa.etf.rpr.project.utilities.ServerConfig;
 import ba.unsa.etf.rpr.project.utilities.Threading;
 import ba.unsa.etf.rpr.project.utilities.Window;
 import javafx.application.Platform;
@@ -236,7 +237,7 @@ public class RegisterWindow {
                 payload.put("username", txtFldUsername.getText().trim());
                 payload.put("password", pswdFldPassword.getText().trim());
                 String sendablePayload = Json.generatePayload(payload);
-                String ret = Json.sendPost("http://localhost:8080/cred", sendablePayload);
+                String ret = Json.sendPost(ServerConfig.getServer(), sendablePayload);
 
                 if (!ret.equals("OK")) {
                     String finalRet = ret;
@@ -246,7 +247,7 @@ public class RegisterWindow {
                     return;
                 }
 
-                ret = Json.sendPost("http://localhost:8080", createUserFromFields().getJsonFormat());
+                ret = Json.sendPost(ServerConfig.getServer(), createUserFromFields().getJsonFormat());
                 if (!ret.equals("OK")) {
                     String finalRet = ret;
                     Platform.runLater(() -> {
