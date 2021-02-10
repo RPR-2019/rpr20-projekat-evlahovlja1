@@ -10,13 +10,13 @@ import java.time.Period;
 public class User {
     @Id
     @SequenceGenerator(
-            name = "seq",
-            sequenceName = "seq",
+            name = "userSeq",
+            sequenceName = "userSeq",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "seq"
+            generator = "userSeq"
     )
     private Long id;
     private String name;
