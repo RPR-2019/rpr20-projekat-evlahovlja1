@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.project.controllers;
 import ba.unsa.etf.rpr.project.dtos.User;
 import ba.unsa.etf.rpr.project.utilities.Json;
 import ba.unsa.etf.rpr.project.utilities.Threading;
+import ba.unsa.etf.rpr.project.utilities.Window;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +29,7 @@ public class RegisterWindow {
     @FXML private TextField txtFldInstitution;
     @FXML private ChoiceBox<String> choiceBoxFavoriteLang;
     @FXML private TextArea txtAreaAbout;
+    @FXML private Button btnClose;
 
     private void addGenderRadioButtons() {
         final ToggleGroup genderRadioGroup = new ToggleGroup();
@@ -192,6 +194,21 @@ public class RegisterWindow {
     }
 
     public void okAction(ActionEvent actionEvent) {
+        if (
+                txtFldUsername.getStyleClass().contains("invalid-field") ||
+                        pswdFldPassword.getStyleClass().contains("invalid-field") ||
+                        txtFldName.getStyleClass().contains("invalid-field") ||
+                        txtFldLastname.getStyleClass().contains("invalid-field") ||
+                        txtFldInstitution.getStyleClass().contains("invalid-field")
+        )
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Prazno polje");
+            alert.setHeaderText("Nijedno polje ne smije biti prazno");
+            alert.setContentText("Molimo popunite sva polja");
+            alert.showAndWait();
+            return;
+        }
         Threading.runOnAnotherThread(() -> {
             try {
                 HashMap<String, String> payload = new HashMap<>();
@@ -223,6 +240,6 @@ public class RegisterWindow {
     }
 
     public void cancelAction(ActionEvent actionEvent) {
-
+        Window.closeWindow(btnClose);
     }
 }
