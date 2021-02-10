@@ -32,6 +32,19 @@ public class User {
         this.about = about;
     }
 
+    public User(String name, String lastname, char gender, LocalDate dateOfBirth, Integer age, String city, boolean student, String institution, String favoriteLanguage, String about) {
+        this.name = name;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.age = age;
+        this.city = city;
+        this.student = student;
+        this.institution = institution;
+        this.favoriteLanguage = favoriteLanguage;
+        this.about = about;
+    }
+
     public Long getId() {
         return id;
     }
