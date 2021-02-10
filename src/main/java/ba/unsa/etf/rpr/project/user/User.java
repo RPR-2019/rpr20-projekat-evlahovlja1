@@ -19,7 +19,7 @@ public class User {
             generator = "userSeq"
     )
     private Long id;
-    private String name;
+    private String firstname;
     private String lastname;
     private char gender;
     private LocalDate dateOfBirth;
@@ -34,8 +34,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String about) {
-        this.name = name;
+    public User(String firstname, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String about) {
+        this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -46,9 +46,9 @@ public class User {
         this.about = about;
     }
 
-    public User(Long id, String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String about) {
+    public User(Long id, String firstname, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String about) {
         this.id = id;
-        this.name = name;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -67,12 +67,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstname(String name) {
+        this.firstname = name;
     }
 
     public String getLastname() {
@@ -147,7 +147,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
