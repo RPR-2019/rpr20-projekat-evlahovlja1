@@ -30,7 +30,7 @@ public class SplashScreen {
                 "beze nesto"
         );
 
-        String userId = Json.sendRequest("http://localhost:8080", user.getJsonFormat());
+        String userId = Json.sendPost("http://localhost:8080", user.getJsonFormat());
         user.setId((long) Integer.parseInt(userId));
     }
 
