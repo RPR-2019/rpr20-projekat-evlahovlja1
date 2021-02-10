@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.project.controllers;
 
 import ba.unsa.etf.rpr.project.dtos.User;
 import ba.unsa.etf.rpr.project.utilities.Json;
+import ba.unsa.etf.rpr.project.utilities.Threading;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -124,29 +125,35 @@ public class RegisterWindow {
 
     }
 
-    public void okAction(ActionEvent actionEvent) throws Exception {
-        //uname and pass first
-        HashMap<String, String> payload = new HashMap<>();
-        payload.put("username", txtFldUsername.getText());
-        payload.put("password", pswdFldPassword.getText());
-        String sendablePayload = Json.generatePayload(payload);
-        String ret = Json.sendPost("http://localhost:8080/cred", sendablePayload);
-        System.out.println(ret);
+    public void okAction(ActionEvent actionEvent) {
+        Threading.runOnAnotherThread(() -> {
+            try {
+                HashMap<String, String> payload = new HashMap<>();
+                payload.put("username", txtFldUsername.getText());
+                payload.put("password", pswdFldPassword.getText());
+                String sendablePayload = Json.generatePayload(payload);
+                String ret = Json.sendPost("http://localhost:8080/cred", sendablePayload);
+                System.out.println(ret);
 
-        User user = new User(
-                txtFldName.getText(),
-                txtFldLastname.getText(),
-                gender,
-                datePckrDateOfBirth.getValue(),
-                Period.between(datePckrDateOfBirth.getValue(), LocalDate.now()).getYears(),
-                choiceBoxCity.getValue(),
-                checkBoxStudent.isSelected(),
-                txtFldInstitution.getText(),
-                choiceBoxFavoriteLang.getValue(),
-                txtAreaAbout.getText()
-        );
-        ret = Json.sendPost("http://localhost:8080", user.getJsonFormat());
-        System.out.println(ret);
+                User user = new User(
+                        txtFldName.getText(),
+                        txtFldLastname.getText(),
+                        gender,
+                        datePckrDateOfBirth.getValue(),
+                        Period.between(datePckrDateOfBirth.getValue(), LocalDate.now()).getYears(),
+                        choiceBoxCity.getValue(),
+                        checkBoxStudent.isSelected(),
+                        txtFldInstitution.getText(),
+                        choiceBoxFavoriteLang.getValue(),
+                        txtAreaAbout.getText()
+                );
+                ret = Json.sendPost("http://localhost:8080", user.getJsonFormat());
+                System.out.println(ret);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(-20);
+            }
+        });
     }
 
     public void cancelAction(ActionEvent actionEvent) {
