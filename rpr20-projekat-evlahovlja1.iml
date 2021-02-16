@@ -16,5 +16,6 @@
     <orderEntry type="library" name="org.apache.httpcomponents:httpclient:4.5.13" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="org.testfx:testfx-junit5:4.0.16-alpha" level="project" />
   </component>
 </module>
