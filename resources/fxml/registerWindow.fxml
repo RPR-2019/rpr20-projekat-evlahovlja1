@@ -69,6 +69,7 @@
             <Label text="Ime:" />
             <Label text="Prezime:" GridPane.columnIndex="2" />
             <Label text="Spol:" GridPane.rowIndex="1" />
+             
             <Label text="Datum rodjenja:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Grad stanovanja:" GridPane.rowIndex="2" />
             <Label text="Student:" GridPane.rowIndex="4" />
@@ -93,6 +94,15 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </ButtonBar>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <fx:define>
+                    <ToggleGroup fx:id="tglGroupGender" />
+                </fx:define>
+               <children>
+                  <RadioButton mnemonicParsing="false" selected="true" text="M" fx:id="radioBtnGenderM" toggleGroup="$tglGroupGender"/>
+                  <RadioButton mnemonicParsing="false" text="F" fx:id="radioBtnGenderF" toggleGroup="$tglGroupGender"/>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

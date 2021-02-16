@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -25,6 +24,9 @@ public class RegisterWindow {
     @FXML private PasswordField pswdFldPassword;
     @FXML private TextField txtFldName;
     @FXML private TextField txtFldLastname;
+    @FXML private ToggleGroup tglGroupGender;
+    @FXML private RadioButton radioBtnGenderM;
+    @FXML private RadioButton radioBtnGenderF;
     @FXML private DatePicker datePckrDateOfBirth;
     @FXML private ChoiceBox<String> choiceBoxCity;
     @FXML private CheckBox checkBoxStudent;
@@ -32,25 +34,6 @@ public class RegisterWindow {
     @FXML private ChoiceBox<String> choiceBoxFavoriteLang;
     @FXML private TextArea txtAreaAbout;
     @FXML private Button btnClose;
-
-    private void addGenderRadioButtons() {
-        final ToggleGroup genderRadioGroup = new ToggleGroup();
-        RadioButton male = new RadioButton("M");
-        male.setToggleGroup(genderRadioGroup);
-        RadioButton female = new RadioButton("F");
-        female.setToggleGroup(genderRadioGroup);
-
-        genderRadioGroup.selectedToggleProperty().addListener((observableValue, oldVal, newVal) -> {
-            if (newVal.equals(male)) {
-                gender = 'M';
-            }
-            else {
-                gender = 'F';
-            }
-        });
-        male.setSelected(true);
-        gridPaneInfo.add(new HBox(15, male,female), 1, 1);
-    }
 
     private void addCityOptions() {
         choiceBoxCity.setItems(FXCollections.observableList(List.of(
@@ -181,12 +164,20 @@ public class RegisterWindow {
         });
     }
 
+    private void genderListener() {
+        tglGroupGender.selectedToggleProperty().addListener((observableValue, o, n) -> {
+            if (n.equals(radioBtnGenderM)) gender = 'M';
+            else gender = 'F';
+            System.out.println(gender);
+        });
+    }
+
     private void finishGui() {
-        addGenderRadioButtons();
         addCityOptions();
         addLanguageOptions();
         datePckrDateOfBirth.setValue(LocalDate.now());
         validationStyle();
+        genderListener();
     }
 
     private boolean anyFieldInvalid() {
@@ -226,6 +217,7 @@ public class RegisterWindow {
     }
 
     public void okAction(ActionEvent actionEvent) {
+
         if (anyFieldInvalid())
         {
             createAlert(Alert.AlertType.ERROR, "Prazno polje", "Nijedno polje ne smije biti prazno", "Molimo popunite sva polja");
