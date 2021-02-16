@@ -14,7 +14,7 @@ public class UserConfig {
     CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
             User a = new User("test", "test", 'M', LocalDate.of(2000, 1, 1), "Sarajevi", true, "test", "C#", "test");
-            userRepository.saveAll(List.of(a));
+            userRepository.save(a);
         };
     }
 }
