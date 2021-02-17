@@ -16,9 +16,10 @@ public class Json {
 
     public static String sendPost(String url, String payload) throws Exception {
         HttpPost post = new HttpPost(url);
-        post.setEntity(new StringEntity(payload));
         post.setHeader("Accept", "text/plain");
         post.setHeader("Content-type", "application/json");
+        post.setHeader("charset","utf-8");
+        post.setEntity(new StringEntity(payload, "UTF-8"));
         HttpResponse response = httpClient.execute(post);
         return EntityUtils.toString(response.getEntity(), "UTF-8");
     }
