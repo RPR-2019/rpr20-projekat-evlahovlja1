@@ -17,12 +17,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.util.WaitForAsyncUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,18 +68,17 @@ public class RegisterWindowTest {
     }
 
     private void alertDialogHasContent(FxRobot fxRobot, final String expectedContent) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         final javafx.stage.Stage actualAlertDialog = getTopModalStage(fxRobot);
         assertNotNull(actualAlertDialog);
 
         final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
         assertEquals(expectedContent, dialogPane.getContentText());
     }
-
-    private static void assertAlertIsVisible(FxRobot fxRobot) {
-        assertDoesNotThrow(() -> WaitForAsyncUtils.waitFor(10, TimeUnit.SECONDS, () -> fxRobot.lookup(".dialog-pane").tryQuery().isPresent()));
-    }
-
-
 
     @Test
     public void initialInvalidFieldsStyle(FxRobot fxRobot) {
@@ -98,7 +95,7 @@ public class RegisterWindowTest {
     public void okButtonPressedWhileFieldsStillEmpty(FxRobot fxRobot) {
         fxRobot.clickOn("#btnOk");
 
-        assertAlertIsVisible(fxRobot);
+        alertDialogHasContent(fxRobot, "Molimo popunite sva polja");
     }
 
     @Test
@@ -109,7 +106,7 @@ public class RegisterWindowTest {
         fxRobot.clickOn("#txtFldLastname").write("test");
         fxRobot.clickOn("#txtFldInstitution").write("test");
         fxRobot.clickOn("#btnOk");
-        assertAlertIsVisible(fxRobot);
+        alertDialogHasContent(fxRobot, "Username already taken");
     }
 
     @Test
@@ -120,6 +117,6 @@ public class RegisterWindowTest {
         fxRobot.clickOn("#txtFldLastname").write("test");
         fxRobot.clickOn("#txtFldInstitution").write("test");
         fxRobot.clickOn("#btnOk");
-        assertAlertIsVisible(fxRobot);
+        alertDialogHasContent(fxRobot, "Firstname and lastname already taken");
     }
 }
