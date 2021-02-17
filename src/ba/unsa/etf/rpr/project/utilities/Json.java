@@ -19,7 +19,7 @@ public class Json {
         post.setHeader("Accept", "text/plain");
         post.setHeader("Content-type", "application/json");
         post.setHeader("charset","utf-8");
-        post.setEntity(new StringEntity(payload, "UTF-8"));
+        post.setEntity(new StringEntity(payload));
         HttpResponse response = httpClient.execute(post);
         return EntityUtils.toString(response.getEntity(), "UTF-8");
     }
