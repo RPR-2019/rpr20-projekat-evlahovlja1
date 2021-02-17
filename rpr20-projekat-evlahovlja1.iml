@@ -9,14 +9,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="org.apache.httpcomponents:httpclient:4.5.13" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="library" name="org.testfx:testfx-junit5:4.0.16-alpha" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.4">
@@ -34,5 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javaf" level="project" />
   </component>
 </module>
