@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserCredentialConfig {
     @Bean
-    CommandLineRunner commandLineRunner(UserCredentialRepository userCredentialRepository) {
+    CommandLineRunner userCredentialBean(UserCredentialRepository userCredentialRepository) {
         return args -> {
             UserCredential userCredential = new UserCredential("test", "test");
             userCredentialRepository.save(userCredential);
