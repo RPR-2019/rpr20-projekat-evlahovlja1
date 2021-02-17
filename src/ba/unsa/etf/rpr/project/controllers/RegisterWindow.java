@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class RegisterWindow {
-    private char gender;
+    private char gender = 'M';
     @FXML private GridPane gridPaneInfo;
     @FXML private TextField txtFldUsername;
     @FXML private PasswordField pswdFldPassword;
