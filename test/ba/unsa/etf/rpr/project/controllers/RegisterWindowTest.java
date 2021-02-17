@@ -1,20 +1,30 @@
 package ba.unsa.etf.rpr.project.controllers;
 
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.util.WaitForAsyncUtils;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
 public class RegisterWindowTest {
@@ -32,11 +42,46 @@ public class RegisterWindowTest {
         this.stage = stage;
     }
 
-    public static boolean hasStyle(TextField fld, String style) {
+    @AfterEach
+    public void closeAlert(FxRobot fxRobot) {
+        Stage stage = getTopModalStage(fxRobot);
+        if (stage != null) Platform.runLater(stage::close);
+    }
+
+
+    private static boolean hasStyle(TextField fld, String style) {
         for (String s : fld.getStyleClass())
             if (s.equals(style)) return true;
         return false;
     }
+
+
+
+    private javafx.stage.Stage getTopModalStage(FxRobot fxRobot) {
+        final List<Window> allWindows = new ArrayList<>(fxRobot.robotContext().getWindowFinder().listWindows());
+        Collections.reverse(allWindows);
+
+        return (javafx.stage.Stage) allWindows
+                .stream()
+                .filter(window -> window instanceof javafx.stage.Stage)
+                .filter(window -> ((javafx.stage.Stage) window).getModality() == Modality.APPLICATION_MODAL)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private void alertDialogHasContent(FxRobot fxRobot, final String expectedContent) {
+        final javafx.stage.Stage actualAlertDialog = getTopModalStage(fxRobot);
+        assertNotNull(actualAlertDialog);
+
+        final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
+        assertEquals(expectedContent, dialogPane.getContentText());
+    }
+
+    private static void assertAlertIsVisible(FxRobot fxRobot) {
+        assertDoesNotThrow(() -> WaitForAsyncUtils.waitFor(10, TimeUnit.SECONDS, () -> fxRobot.lookup(".dialog-pane").tryQuery().isPresent()));
+    }
+
+
 
     @Test
     public void initialInvalidFieldsStyle(FxRobot fxRobot) {
@@ -47,5 +92,34 @@ public class RegisterWindowTest {
                 () -> assertTrue(hasStyle(fxRobot.lookup("#txtFldLastname").queryAs(TextField.class), "invalid-field")),
                 () -> assertTrue(hasStyle(fxRobot.lookup("#txtFldInstitution").queryAs(TextField.class), "invalid-field"))
         );
+    }
+
+    @Test
+    public void okButtonPressedWhileFieldsStillEmpty(FxRobot fxRobot) {
+        fxRobot.clickOn("#btnOk");
+
+        assertAlertIsVisible(fxRobot);
+    }
+
+    @Test
+    public void usernameAlreadyExists(FxRobot fxRobot) {
+        fxRobot.clickOn("#txtFldUsername").write("test");
+        fxRobot.clickOn("#pswdFldPassword").write("test");
+        fxRobot.clickOn("#txtFldName").write("test");
+        fxRobot.clickOn("#txtFldLastname").write("test");
+        fxRobot.clickOn("#txtFldInstitution").write("test");
+        fxRobot.clickOn("#btnOk");
+        assertAlertIsVisible(fxRobot);
+    }
+
+    @Test
+    public void userAlreadyExists(FxRobot fxRobot) {
+        fxRobot.clickOn("#txtFldUsername").write("test2");
+        fxRobot.clickOn("#pswdFldPassword").write("test2");
+        fxRobot.clickOn("#txtFldName").write("test");
+        fxRobot.clickOn("#txtFldLastname").write("test");
+        fxRobot.clickOn("#txtFldInstitution").write("test");
+        fxRobot.clickOn("#btnOk");
+        assertAlertIsVisible(fxRobot);
     }
 }
