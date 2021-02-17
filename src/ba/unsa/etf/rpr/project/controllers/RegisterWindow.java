@@ -188,7 +188,7 @@ public class RegisterWindow {
                 payload.put("username", txtFldUsername.getText().trim());
                 payload.put("password", pswdFldPassword.getText().trim());
                 String sendablePayload = Json.generatePayload(payload);
-                String ret = Json.sendPost(ServerConfig.getServer(), sendablePayload);
+                String ret = Json.sendPost(ServerConfig.getCredServer(), sendablePayload);
 
                 if (!ret.equals("OK")) {
                     String finalRet = ret;
