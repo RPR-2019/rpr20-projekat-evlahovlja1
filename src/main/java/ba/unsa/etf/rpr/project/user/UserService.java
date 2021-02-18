@@ -20,10 +20,6 @@ public class UserService {
     }
 
     public void addNewUser(User user) {
-        Optional<User> userOptional = userRepository.findUserByNameAndLastname(user.getFirstname(), user.getLastname());
-        if (userOptional.isPresent()) {
-            throw new IllegalArgumentException("Firstname and lastname already taken!");
-        }
         userRepository.save(user);
     }
 }
