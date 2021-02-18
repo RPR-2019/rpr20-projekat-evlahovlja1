@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+import java.net.ConnectException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.HashMap;
@@ -206,9 +207,12 @@ public class RegisterWindow {
                     });
                     return;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.exit(-20);
+            }
+            catch (ConnectException e) {
+                Platform.runLater(() -> createAlert(Alert.AlertType.WARNING, "Server nedostupan", "Server nedostupan", e.getMessage()));
+            }
+            catch (Exception e) {
+                Platform.runLater(() -> createAlert(Alert.AlertType.WARNING, "Greska prilikom slanja zahtjeva", "Greska prilikom slanja zahtjeva", e.getMessage()));
             }
         });
     }

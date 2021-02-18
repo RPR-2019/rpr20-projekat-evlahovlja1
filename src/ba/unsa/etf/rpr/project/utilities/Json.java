@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.project.utilities;
 
+import ba.unsa.etf.rpr.project.exceptions.ServerNotReachableException;
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -8,6 +9,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import java.net.ConnectException;
 import java.util.HashMap;
 
 public class Json {
@@ -15,13 +17,18 @@ public class Json {
     Gson gson = new Gson();
 
     public static String sendPost(String url, String payload) throws Exception {
-        HttpPost post = new HttpPost(url);
-        post.setHeader("Accept", "text/plain");
-        post.setHeader("Content-type", "application/json");
-        post.setHeader("charset","utf-8");
-        post.setEntity(new StringEntity(payload));
-        HttpResponse response = httpClient.execute(post);
-        return EntityUtils.toString(response.getEntity(), "UTF-8");
+        try {
+            HttpPost post = new HttpPost(url);
+            post.setHeader("Accept", "text/plain");
+            post.setHeader("Content-type", "application/json");
+            post.setHeader("charset","utf-8");
+            post.setEntity(new StringEntity(payload));
+            HttpResponse response = httpClient.execute(post);
+            return EntityUtils.toString(response.getEntity(), "UTF-8");
+        }
+        catch (ConnectException e) {
+            throw new ServerNotReachableException("Server " + url + " trenutno nedostupan");
+        }
     }
 
     public static String generatePayload(HashMap<String, String> keyVal) {
