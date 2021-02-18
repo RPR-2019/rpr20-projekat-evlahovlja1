@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -69,7 +70,7 @@ public class RegisterWindowTest {
 
     private void alertDialogHasContent(FxRobot fxRobot, final String expectedContent) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -77,7 +78,7 @@ public class RegisterWindowTest {
         assertNotNull(actualAlertDialog);
 
         final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
-        assertEquals(expectedContent, dialogPane.getContentText());
+        assertTrue(dialogPane.getContentText().contains(expectedContent));
     }
 
     @Test
@@ -118,5 +119,17 @@ public class RegisterWindowTest {
         fxRobot.clickOn("#txtFldInstitution").write("test");
         fxRobot.clickOn("#btnOk");
         alertDialogHasContent(fxRobot, "Firstname and lastname already taken");
+    }
+
+    @Test
+    @Disabled
+    public void serverNotReachable(FxRobot fxRobot) {
+        fxRobot.clickOn("#txtFldUsername").write("test2");
+        fxRobot.clickOn("#pswdFldPassword").write("test2");
+        fxRobot.clickOn("#txtFldName").write("test");
+        fxRobot.clickOn("#txtFldLastname").write("test");
+        fxRobot.clickOn("#txtFldInstitution").write("test");
+        fxRobot.clickOn("#btnOk");
+        alertDialogHasContent(fxRobot, "nedostupan");
     }
 }
