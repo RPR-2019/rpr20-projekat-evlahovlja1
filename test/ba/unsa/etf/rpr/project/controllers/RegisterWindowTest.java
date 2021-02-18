@@ -111,6 +111,8 @@ public class RegisterWindowTest {
     }
 
     @Test
+    @Disabled
+    //restriction that 2 users cannot have same firstname and lastname is removed
     public void userAlreadyExists(FxRobot fxRobot) {
         fxRobot.clickOn("#txtFldUsername").write("test2");
         fxRobot.clickOn("#pswdFldPassword").write("test2");
@@ -119,6 +121,17 @@ public class RegisterWindowTest {
         fxRobot.clickOn("#txtFldInstitution").write("test");
         fxRobot.clickOn("#btnOk");
         alertDialogHasContent(fxRobot, "Firstname and lastname already taken");
+    }
+
+    @Test
+    public void successfullyRegister(FxRobot fxRobot) {
+        fxRobot.clickOn("#txtFldUsername").write("SUCCESS");
+        fxRobot.clickOn("#pswdFldPassword").write("SUCCESS");
+        fxRobot.clickOn("#txtFldName").write("SUCCESS");
+        fxRobot.clickOn("#txtFldLastname").write("SUCCESS");
+        fxRobot.clickOn("#txtFldInstitution").write("SUCCESS");
+        fxRobot.clickOn("#btnOk");
+        alertDialogHasContent(fxRobot, "uspjesna");
     }
 
     @Test
