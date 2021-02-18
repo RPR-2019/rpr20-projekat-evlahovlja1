@@ -9,8 +9,13 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.net.ConnectException;
 import java.time.LocalDate;
@@ -35,6 +40,7 @@ public class RegisterWindow {
     @FXML private ChoiceBox<String> choiceBoxFavoriteLang;
     @FXML private TextArea txtAreaAbout;
     @FXML private Button btnClose;
+    @FXML private Button btnOk;
 
     private void addCityOptions() {
         choiceBoxCity.setItems(FXCollections.observableList(List.of(
@@ -171,6 +177,16 @@ public class RegisterWindow {
         );
     }
 
+    private void openLoginWindow() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/loginWindow.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Prijava");
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/ikona.jpg")));
+        stage.show();
+    }
+
 
     @FXML public void initialize() {
         finishGui();
@@ -207,6 +223,18 @@ public class RegisterWindow {
                     });
                     return;
                 }
+
+                Platform.runLater(
+                        () -> {
+                            createAlert(Alert.AlertType.INFORMATION, "Registracija uspjesna", "Registracija uspjesna", "Registracija uspjesna. Molimo izvrsite prijavu");
+                            Window.closeWindow(btnOk);
+                            try {
+                                openLoginWindow();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                );
             }
             catch (ConnectException e) {
                 Platform.runLater(() -> createAlert(Alert.AlertType.WARNING, "Server nedostupan", "Server nedostupan", e.getMessage()));
