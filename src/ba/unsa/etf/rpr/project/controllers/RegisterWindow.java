@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -41,6 +42,7 @@ public class RegisterWindow {
     @FXML private TextArea txtAreaAbout;
     @FXML private Button btnClose;
     @FXML private Button btnOk;
+    @FXML private ImageView imgViewLoading;
 
     private void addCityOptions() {
         choiceBoxCity.setItems(FXCollections.observableList(List.of(
@@ -199,6 +201,11 @@ public class RegisterWindow {
             createAlert(Alert.AlertType.ERROR, "Prazno polje", "Nijedno polje ne smije biti prazno", "Molimo popunite sva polja");
             return;
         }
+
+        Image loading = new Image("/images/loading.gif");
+        this.imgViewLoading.setFitWidth(30);
+        this.imgViewLoading.setFitHeight(30);
+        this.imgViewLoading.setImage(loading);
         Threading.runOnAnotherThread(() -> {
             try {
                 HashMap<String, String> payload = new HashMap<>();
@@ -241,6 +248,11 @@ public class RegisterWindow {
             }
             catch (Exception e) {
                 Platform.runLater(() -> createAlert(Alert.AlertType.WARNING, "Greska prilikom slanja zahtjeva", "Greska prilikom slanja zahtjeva", e.getMessage()));
+            }
+            finally {
+                this.imgViewLoading.setFitWidth(0);
+                this.imgViewLoading.setFitHeight(0);
+                this.imgViewLoading.setImage(null);
             }
         });
     }

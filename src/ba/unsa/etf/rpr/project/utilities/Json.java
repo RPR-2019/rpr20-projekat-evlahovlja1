@@ -9,7 +9,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.net.ConnectException;
+import java.net.SocketException;
 import java.util.HashMap;
 
 public class Json {
@@ -19,6 +19,8 @@ public class Json {
     public static String sendPost(String url, String payload) throws Exception {
         try {
             HttpPost post = new HttpPost(url);
+            post.setHeader("Connection-Timeout", "5");
+            post.setHeader("Request-Timeout", "5");
             post.setHeader("Accept", "text/plain");
             post.setHeader("Content-type", "application/json");
             post.setHeader("charset","utf-8");
@@ -26,8 +28,8 @@ public class Json {
             HttpResponse response = httpClient.execute(post);
             return EntityUtils.toString(response.getEntity(), "UTF-8");
         }
-        catch (ConnectException e) {
-            throw new ServerNotReachableException("Server " + url + " trenutno nedostupan");
+        catch (SocketException e) {
+            throw new ServerNotReachableException("Server trenutno nedostupan");
         }
     }
 
