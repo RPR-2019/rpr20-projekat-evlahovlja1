@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/ikona.jpg" />
+            <Image url="@/images/ikona.jpg" />
          </image>
          <VBox.margin>
             <Insets bottom="30.0" top="20.0" />
@@ -98,10 +98,10 @@
                 <fx:define>
                     <ToggleGroup fx:id="tglGroupGender" />
                 </fx:define>
-               <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="M" fx:id="radioBtnGenderM" toggleGroup="$tglGroupGender"/>
-                  <RadioButton mnemonicParsing="false" text="F" fx:id="radioBtnGenderF" toggleGroup="$tglGroupGender"/>
-               </children>
+                <children>
+                    <RadioButton mnemonicParsing="false" selected="true" text="M" fx:id="radioBtnGenderM" toggleGroup="$tglGroupGender"/>
+                    <RadioButton mnemonicParsing="false" text="F" fx:id="radioBtnGenderF" toggleGroup="$tglGroupGender"/>
+                </children>
             </HBox>
          </children>
          <padding>
