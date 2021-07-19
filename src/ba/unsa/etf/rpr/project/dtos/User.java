@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.project.dtos;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class User {
     private Long id;
@@ -8,40 +9,40 @@ public class User {
     private String lastname;
     private char gender;
     private LocalDate dateOfBirth;
-    private Integer age;
     private String city;
     private boolean student;
     private String institution;
     private String favoriteLanguage;
+    private String languageToLearn;
     private String about;
 
     public User() {
     }
 
-    public User(Long id, String name, String lastname, char gender, LocalDate dateOfBirth, Integer age, String city, boolean student, String institution, String favoriteLanguage, String about) {
+    public User(Long id, String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
         this.id = id;
         this.firstName = name;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.city = city;
         this.student = student;
         this.institution = institution;
         this.favoriteLanguage = favoriteLanguage;
+        this.languageToLearn = languageToLearn;
         this.about = about;
     }
 
-    public User(String name, String lastname, char gender, LocalDate dateOfBirth, Integer age, String city, boolean student, String institution, String favoriteLanguage, String about) {
+    public User(String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
         this.firstName = name;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.city = city;
         this.student = student;
         this.institution = institution;
         this.favoriteLanguage = favoriteLanguage;
+        this.languageToLearn = languageToLearn;
         this.about = about;
     }
 
@@ -85,14 +86,6 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getCity() {
         return city;
     }
@@ -133,6 +126,13 @@ public class User {
         this.about = about;
     }
 
+    public int getYears() {
+        if (dateOfBirth == null) {
+            throw new IllegalStateException("Date of birth not defined for user");
+        }
+        return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -141,7 +141,6 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
-                ", age=" + age +
                 ", city='" + city + '\'' +
                 ", student=" + student +
                 ", institution='" + institution + '\'' +
