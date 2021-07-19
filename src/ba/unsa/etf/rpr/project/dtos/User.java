@@ -126,6 +126,14 @@ public class User {
         this.about = about;
     }
 
+    public String getLanguageToLearn() {
+        return languageToLearn;
+    }
+
+    public void setLanguageToLearn(String languageToLearn) {
+        this.languageToLearn = languageToLearn;
+    }
+
     public int getYears() {
         if (dateOfBirth == null) {
             throw new IllegalStateException("Date of birth not defined for user");
