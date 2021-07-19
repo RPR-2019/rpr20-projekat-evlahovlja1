@@ -136,7 +136,7 @@ public class User {
 
     public int getYears() {
         if (dateOfBirth == null) {
-            throw new IllegalStateException("Date of birth not defined for user");
+            throw new IllegalStateException("Date of birth not defined for user: " + this);
         }
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
