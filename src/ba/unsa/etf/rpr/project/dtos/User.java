@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class User {
     private Long id;
-    private String name;
+    private String firstName;
     private String lastname;
     private char gender;
     private LocalDate dateOfBirth;
@@ -20,7 +20,7 @@ public class User {
 
     public User(Long id, String name, String lastname, char gender, LocalDate dateOfBirth, Integer age, String city, boolean student, String institution, String favoriteLanguage, String about) {
         this.id = id;
-        this.name = name;
+        this.firstName = name;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -33,7 +33,7 @@ public class User {
     }
 
     public User(String name, String lastname, char gender, LocalDate dateOfBirth, Integer age, String city, boolean student, String institution, String favoriteLanguage, String about) {
-        this.name = name;
+        this.firstName = name;
         this.lastname = lastname;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -53,12 +53,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastname() {
@@ -133,27 +133,11 @@ public class User {
         this.about = about;
     }
 
-    public String getJsonFormat() {
-        return String.format("{\"firstname\":\"%s\", \"lastname\":\"%s\", \"gender\":\"%s\", \"dateOfBirth\":\"%s\", " +
-                        "\"city\":\"%s\", \"student\":\"%s\", " +
-                        "\"institution\":\"%s\", \"favoriteLanguage\":\"%s\", \"about\":\"%s\"}",
-                name,
-                lastname,
-                gender,
-                dateOfBirth.toString(),
-                city,
-                student,
-                institution,
-                favoriteLanguage,
-                about
-        );
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstName + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
