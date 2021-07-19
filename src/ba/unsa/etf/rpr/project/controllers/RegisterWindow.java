@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.project.controllers;
 
 import ba.unsa.etf.rpr.project.dtos.User;
-import ba.unsa.etf.rpr.project.utilities.Json;
-import ba.unsa.etf.rpr.project.utilities.ServerConfig;
 import ba.unsa.etf.rpr.project.utilities.Threading;
 import ba.unsa.etf.rpr.project.utilities.Window;
 import javafx.application.Platform;
