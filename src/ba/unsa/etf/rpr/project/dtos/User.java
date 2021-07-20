@@ -18,8 +18,8 @@ public class User {
     private SimpleStringProperty city;
     private SimpleBooleanProperty student;
     private SimpleStringProperty institution;
+    private SimpleStringProperty currentLanguage;
     private SimpleStringProperty favoriteLanguage;
-    private SimpleStringProperty languageToLearn;
     private SimpleStringProperty about;
 
     public User() {
@@ -32,8 +32,8 @@ public class User {
         this.city = new SimpleStringProperty();
         this.student = new SimpleBooleanProperty();
         this.institution = new SimpleStringProperty();
+        this.currentLanguage = new SimpleStringProperty();
         this.favoriteLanguage = new SimpleStringProperty();
-        this.languageToLearn = new SimpleStringProperty();
         this.about = new SimpleStringProperty();
     }
 
@@ -48,7 +48,7 @@ public class User {
         this.student = new SimpleBooleanProperty(student);
         this.institution = new SimpleStringProperty(institution);
         this.favoriteLanguage = new SimpleStringProperty(favoriteLanguage);
-        this.languageToLearn = new SimpleStringProperty(languageToLearn);
+        this.currentLanguage = new SimpleStringProperty(languageToLearn);
         this.about = new SimpleStringProperty(about);
     }
 
@@ -62,7 +62,7 @@ public class User {
         this.student = new SimpleBooleanProperty(student);
         this.institution = new SimpleStringProperty(institution);
         this.favoriteLanguage = new SimpleStringProperty(favoriteLanguage);
-        this.languageToLearn = new SimpleStringProperty(languageToLearn);
+        this.currentLanguage = new SimpleStringProperty(languageToLearn);
         this.about = new SimpleStringProperty(about);
     }
 
@@ -174,16 +174,16 @@ public class User {
         this.favoriteLanguage.set(favoriteLanguage);
     }
 
-    public String getLanguageToLearn() {
-        return languageToLearn.get();
+    public String getCurrentLanguage() {
+        return currentLanguage.get();
     }
 
-    public SimpleStringProperty languageToLearnProperty() {
-        return languageToLearn;
+    public SimpleStringProperty currentLanguageProperty() {
+        return currentLanguage;
     }
 
-    public void setLanguageToLearn(String languageToLearn) {
-        this.languageToLearn.set(languageToLearn);
+    public void setCurrentLanguage(String currentLanguage) {
+        this.currentLanguage.set(currentLanguage);
     }
 
     public String getAbout() {
