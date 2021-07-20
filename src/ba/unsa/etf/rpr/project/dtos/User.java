@@ -10,7 +10,8 @@ import java.time.Period;
 
 public class User {
     private SimpleLongProperty id;
-    private SimpleStringProperty firstName;
+    private SimpleStringProperty username;
+    private SimpleStringProperty firstname;
     private SimpleStringProperty lastname;
     private SimpleObjectProperty<Character> gender;
     private SimpleObjectProperty<LocalDate> dateOfBirth;
@@ -22,69 +23,103 @@ public class User {
     private SimpleStringProperty about;
 
     public User() {
+        this.id = new SimpleLongProperty();
+        this.username = new SimpleStringProperty();
+        this.firstname = new SimpleStringProperty();
+        this.lastname = new SimpleStringProperty();
+        this.gender = new SimpleObjectProperty<>();
+        this.dateOfBirth = new SimpleObjectProperty<>();
+        this.city = new SimpleStringProperty();
+        this.student = new SimpleBooleanProperty();
+        this.institution = new SimpleStringProperty();
+        this.favoriteLanguage = new SimpleStringProperty();
+        this.languageToLearn = new SimpleStringProperty();
+        this.about = new SimpleStringProperty();
     }
 
-    public User(Long id, String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
-        this.id.set(id);
-        this.firstName.set(name);
-        this.lastname.set(lastname);
-        this.gender.set(gender);
-        this.dateOfBirth.set(dateOfBirth);
-        this.city.set(city);
-        this.student.set(student);
-        this.institution.set(institution);
-        this.favoriteLanguage.set(favoriteLanguage);
-        this.languageToLearn.set(languageToLearn);
-        this.about.set(about);
+    public User(Long id, String username, String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
+        this.id = new SimpleLongProperty(id);
+        this.username = new SimpleStringProperty(username);
+        this.firstname = new SimpleStringProperty(name);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.gender = new SimpleObjectProperty<>(gender);
+        this.dateOfBirth = new SimpleObjectProperty<>(dateOfBirth);
+        this.city = new SimpleStringProperty(city);
+        this.student = new SimpleBooleanProperty(student);
+        this.institution = new SimpleStringProperty(institution);
+        this.favoriteLanguage = new SimpleStringProperty(favoriteLanguage);
+        this.languageToLearn = new SimpleStringProperty(languageToLearn);
+        this.about = new SimpleStringProperty(about);
     }
 
-    public User(String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
-        this.firstName.set(name);
-        this.lastname.set(lastname);
-        this.gender.set(gender);
-        this.dateOfBirth.set(dateOfBirth);
-        this.city.set(city);
-        this.student.set(student);
-        this.institution.set(institution);
-        this.favoriteLanguage.set(favoriteLanguage);
-        this.languageToLearn.set(languageToLearn);
-        this.about.set(about);
+    public User(String username, String name, String lastname, char gender, LocalDate dateOfBirth, String city, boolean student, String institution, String favoriteLanguage, String languageToLearn, String about) {
+        this.username = new SimpleStringProperty(username);
+        this.firstname = new SimpleStringProperty(name);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.gender = new SimpleObjectProperty<>(gender);
+        this.dateOfBirth = new SimpleObjectProperty<>(dateOfBirth);
+        this.city = new SimpleStringProperty(city);
+        this.student = new SimpleBooleanProperty(student);
+        this.institution = new SimpleStringProperty(institution);
+        this.favoriteLanguage = new SimpleStringProperty(favoriteLanguage);
+        this.languageToLearn = new SimpleStringProperty(languageToLearn);
+        this.about = new SimpleStringProperty(about);
     }
 
-    public Long getId() {
-        return id.get();
+    public String getUsername() {
+        return username.get();
     }
 
-    public void setId(Long id) {
-        this.id.set(id);
+    public SimpleStringProperty usernameProperty() {
+        return username;
     }
 
-    public String getFirstName() {
-        return firstName.get();
+    public void setUsername(String username) {
+        this.username.set(username);
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+    public String getFirstname() {
+        return firstname.get();
+    }
+
+    public SimpleStringProperty firstnameProperty() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname.set(firstname);
     }
 
     public String getLastname() {
         return lastname.get();
     }
 
+    public SimpleStringProperty lastnameProperty() {
+        return lastname;
+    }
+
     public void setLastname(String lastname) {
         this.lastname.set(lastname);
     }
 
-    public char getGender() {
+    public Character getGender() {
         return gender.get();
     }
 
-    public void setGender(char gender) {
+    public SimpleObjectProperty<Character> genderProperty() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
         this.gender.set(gender);
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> dateOfBirthProperty() {
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -95,12 +130,20 @@ public class User {
         return city.get();
     }
 
+    public SimpleStringProperty cityProperty() {
+        return city;
+    }
+
     public void setCity(String city) {
         this.city.set(city);
     }
 
     public boolean isStudent() {
         return student.get();
+    }
+
+    public SimpleBooleanProperty studentProperty() {
+        return student;
     }
 
     public void setStudent(boolean student) {
@@ -111,6 +154,10 @@ public class User {
         return institution.get();
     }
 
+    public SimpleStringProperty institutionProperty() {
+        return institution;
+    }
+
     public void setInstitution(String institution) {
         this.institution.set(institution);
     }
@@ -119,69 +166,36 @@ public class User {
         return favoriteLanguage.get();
     }
 
+    public SimpleStringProperty favoriteLanguageProperty() {
+        return favoriteLanguage;
+    }
+
     public void setFavoriteLanguage(String favoriteLanguage) {
         this.favoriteLanguage.set(favoriteLanguage);
-    }
-
-    public String getAbout() {
-        return about.get();
-    }
-
-    public void setAbout(String about) {
-        this.about.set(about);
     }
 
     public String getLanguageToLearn() {
         return languageToLearn.get();
     }
 
-    public void setLanguageToLearn(String languageToLearn) {
-
-        this.languageToLearn.set(languageToLearn);
-    }
-
-    public SimpleLongProperty idProperty() {
-        return id;
-    }
-
-    public SimpleStringProperty firstNameProperty() {
-        return firstName;
-    }
-
-    public SimpleStringProperty lastnameProperty() {
-        return lastname;
-    }
-
-    public SimpleObjectProperty<Character> genderProperty() {
-        return gender;
-    }
-
-    public SimpleObjectProperty<LocalDate> dateOfBirthProperty() {
-        return dateOfBirth;
-    }
-
-    public SimpleStringProperty cityProperty() {
-        return city;
-    }
-
-    public SimpleBooleanProperty studentProperty() {
-        return student;
-    }
-
-    public SimpleStringProperty institutionProperty() {
-        return institution;
-    }
-
-    public SimpleStringProperty favoriteLanguageProperty() {
-        return favoriteLanguage;
-    }
-
     public SimpleStringProperty languageToLearnProperty() {
         return languageToLearn;
     }
 
+    public void setLanguageToLearn(String languageToLearn) {
+        this.languageToLearn.set(languageToLearn);
+    }
+
+    public String getAbout() {
+        return about.get();
+    }
+
     public SimpleStringProperty aboutProperty() {
         return about;
+    }
+
+    public void setAbout(String about) {
+        this.about.set(about);
     }
 
     public int getYears() {
@@ -195,7 +209,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + firstName + '\'' +
+                ", name='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", gender=" + gender +
                 ", dateOfBirth=" + dateOfBirth +
