@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.project.DAOs;
 
 import ba.unsa.etf.rpr.project.dtos.User;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -18,6 +19,7 @@ public class VMeetDAO {
     private static VMeetDAO instance = null;
 
     private ObservableList<User> users = FXCollections.observableArrayList();
+    private SimpleObjectProperty<User> currentUser = new SimpleObjectProperty<>();
 
     private PreparedStatement
         getAllUsersStatement,
