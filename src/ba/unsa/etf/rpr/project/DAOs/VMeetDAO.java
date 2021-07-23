@@ -28,7 +28,7 @@ public class VMeetDAO {
     private void prepareStatements() throws SQLException {
         getAllUsersStatement = connection.prepareStatement("SELECT * FROM user");
         //On an INSERT, if the ROWID or INTEGER PRIMARY KEY column is not explicitly given a value, then it will be filled automatically with an unused integer, usually one more than the largest ROWID currently in use. This is true regardless of whether or not the AUTOINCREMENT keyword is used.
-        addUserStatement = connection.prepareStatement("INSERT INTO users (" +
+        addUserStatement = connection.prepareStatement("INSERT INTO user (" +
                 "username, " +
                 "firstname, " +
                 "lastname, " +
@@ -37,8 +37,8 @@ public class VMeetDAO {
                 "city, " +
                 "student, " +
                 "institution, " +
+                "currentLanguage, " +
                 "favoriteLanguage, " +
-                "languageToLearn, " +
                 "about" +
                 ") VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     }
